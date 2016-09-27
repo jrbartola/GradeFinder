@@ -24,7 +24,7 @@ def moodle_login(username, password):
 
     # Now we should be on the login page
     if br.geturl() != 'https://moodle.umass.edu/':
-        print("Could not log in for some reason. Aborting...")
+        print("Could not log in. Check your credentials and try again...")
         return
 
     br.open('https://moodle.umass.edu/grade/report/overview/index.php')
