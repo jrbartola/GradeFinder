@@ -15,6 +15,7 @@ def moodle_login(username, password):
     br.open(moodle_url)
     br.select_form(nr=0)
 
+    # Gotta authenticate first!
     br.form['j_username'] = username
     br.form['j_password'] = password
     br.submit()
@@ -30,21 +31,12 @@ def moodle_login(username, password):
 
     scraping = br.response().read()
     soup = BeautifulSoup(scraping, "html.parser")
-    grades = []
 
     for n in range(0,5):
         grade = soup.select("#grade-report-overview-107960_r" + str(n) + "_c1")[0].text
         class_ = soup.select("#grade-report-overview-107960_r" + str(n) + "_c0 a")[0].text
         print(class_ + ": " + grade)
 
-    # print("Calc 3: " + grades[0].text)
-    # print("Physics: " + grades[1].text)
-    # print("Physics Lab: " + grades[2].text)
-    # print("Compsci 230: " + grades[3].text)
-    # print("Compsci 250: " + grades[4].text)
-
-
-#moodle_l
 
 if __name__ == "__main__":
     if len(sys.argv[1:]) != 2:
